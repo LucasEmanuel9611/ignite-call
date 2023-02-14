@@ -7,20 +7,22 @@ import { ArrowRight } from "phosphor-react";
 import { useForm } from "react-hook-form"
 import { z } from 'zod'
 import { api } from '../../lib/axios'
+import { AxiosError } from "axios";
 
 const registerFormSchema = z.object({
-    username: z.string()
+    username: z
+        .string()
         .min(3, { message: 'O usuário precisa ter pelo menos 3 letras.' })
         .regex(/^([a-z\\-]+)$/i, {
             message: 'O usuário pode ter apenas letras e hifens.',
-        }).transform((username) => username.toLowerCase()),
-
+        })
+        .transform((username) => username.toLowerCase()),
     name: z
         .string()
         .min(3, { message: 'O nome precisa ter pelo menos 3 letras.' }),
 })
 
-type RegisterFormData = z.infer<registerFormSchema>
+type RegisterFormData = z.infer<typeof registerFormSchema>
 
 export default function Register() {
 
@@ -45,7 +47,12 @@ export default function Register() {
         try {
             await api.post('/users', data)
         } catch (err) {
-            console.log(err)
+            if (err instanceof AxiosError && err?.response?.data?.message) {
+                alert(err.response.data.message)
+                return
+            }
+
+            console.error(err)
         }
     }
 
@@ -83,7 +90,7 @@ export default function Register() {
                     )}
                 </label>
 
-                <Button type="submit">
+                <Button type="submit" disabled={isSubmitting}>
                     Próximo passo
                     <ArrowRight />
                 </Button>
