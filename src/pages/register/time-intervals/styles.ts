@@ -58,3 +58,8 @@ export const Header = styled("div", {
     marginBottom: "$6",
   },
 });
+
+export const FormError = styled(Text, {
+  color: "#F75A68",
+  marginBottom: "$4",
+});
