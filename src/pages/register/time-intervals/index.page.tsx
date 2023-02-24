@@ -38,7 +38,7 @@ const timeIntervalsFormSchema = z.object({
         .refine(intervals => {
             return intervals.every(interval => interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes)
         }, {
-            message: "O Horáriode ermino deve ser pelo menos um hora distante do início"
+            message: "O Horário de termino deve ser pelo menos um hora distante do início"
         })
 })
 
@@ -52,7 +52,7 @@ export default function TimeIntervals() {
         handleSubmit,
         watch,
         formState: { isSubmitting, errors }
-    } = useForm({
+    } = useForm<TimeIntervalsFormInput>({
         resolver: zodResolver(timeIntervalsFormSchema),
         defaultValues: {
             intervals: [
