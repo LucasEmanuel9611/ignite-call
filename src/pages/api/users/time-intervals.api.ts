@@ -13,7 +13,7 @@ const timeIntervalsBodySchema = z.object({
     })
   ),
 });
-///TODO : Fazr validações no backend
+///TODO : create validations in backend
 
 export default async function handler(
   req: NextApiRequest,

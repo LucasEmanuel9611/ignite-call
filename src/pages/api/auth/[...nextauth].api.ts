@@ -32,6 +32,7 @@ export function buildNextAuthOptions(
         },
       }),
     ],
+
     callbacks: {
       async signIn({ account }) {
         if (
@@ -42,6 +43,7 @@ export function buildNextAuthOptions(
 
         return true;
       },
+
       async session({ session, user }) {
         return {
           ...session,
