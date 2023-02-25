@@ -15,6 +15,10 @@ export default function ConnectCalendar() {
         await signIn('google')
     }
 
+    async function handleNavigateToNextStep() {
+        await router.push('/register/time-intervals')
+    }
+
     return (
         <Styled.Container>
             <Styled.Header>
@@ -24,7 +28,7 @@ export default function ConnectCalendar() {
                     ocupadas e os novos eventos à medida em que são agendados.
                 </Text>
 
-                <MultiStep size={4} currentStep={1} />
+                <MultiStep size={4} currentStep={2} />
             </Styled.Header>
 
             <Styled.ConnectBox>
@@ -50,7 +54,7 @@ export default function ConnectCalendar() {
                     </Styled.AuthError>
                 )}
 
-                <Button type="submit" disabled={!isSignedIn}>
+                <Button type="submit" disabled={!isSignedIn} onClick={handleNavigateToNextStep}>
                     Próximo passo
                     <ArrowRight />
                 </Button>
