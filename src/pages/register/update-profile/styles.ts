@@ -1,13 +1,11 @@
-import { Box, styled, Heading, Text } from "@ignite-ui/react";
+import { Box, Heading, styled, Text } from "@ignite-ui/react";
 
-//TODO: create component
 export const Container = styled("main", {
   maxWidth: 572,
   margin: "$20 auto $4",
   padding: "0 $4",
 });
 
-//TODO: create component
 export const Header = styled("div", {
   padding: "0 $6",
 
@@ -21,7 +19,7 @@ export const Header = styled("div", {
   },
 });
 
-export const Form = styled(Box, {
+export const ProfileBox = styled(Box, {
   marginTop: "$6",
   display: "flex",
   flexDirection: "column",
@@ -34,7 +32,6 @@ export const Form = styled(Box, {
   },
 });
 
-//TODO: create component
-export const FormError = styled(Text, {
-  color: "#F75A68",
+export const FormAnnotation = styled(Text, {
+  color: "$gray200",
 });

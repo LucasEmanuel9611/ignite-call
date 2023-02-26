@@ -38,6 +38,7 @@ export default function Register() {
     const router = useRouter()
 
     useEffect(() => {
+        //TODO: create function to indicate action
         if (router.query.username) {
             setValue("username", String(router.query.username))
         }

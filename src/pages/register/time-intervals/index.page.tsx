@@ -81,6 +81,7 @@ export default function TimeIntervals() {
             intervals,
         })
     }
+
     return (
         <Styled.Container>
             <Styled.Header>
