@@ -1,6 +1,6 @@
 import * as Styled from "./styles"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Heading, MultiStep, Text, TextArea } from "@ignite-ui/react";
+import { Avatar, Button, Heading, MultiStep, Text, TextArea } from "@ignite-ui/react";
 import { ArrowRight } from "phosphor-react";
 import { useForm } from "react-hook-form"
 import { z } from 'zod'
@@ -8,6 +8,8 @@ import { GetServerSideProps } from "next";
 import { unstable_getServerSession } from "next-auth";
 import { buildNextAuthOptions } from "@/pages/api/auth/[...nextauth].api";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { api } from "@/lib/axios";
 
 const UpdateProfileSchema = z.object({
     bio: z.string()
@@ -26,8 +28,15 @@ export default function UpdateProfile() {
     })
 
     const session = useSession()
+    const router = useRouter()
 
-    async function handleUpdateProfile(data: UpdateProfileData) { }
+    async function handleUpdateProfile(data: UpdateProfileData) {
+        await api.put('/users/profile', {
+            bio: data.bio,
+        })
+
+        await router.push(`/schedule/${session.data?.user.username}`)
+    }
 
     return (
         <Styled.Container>
@@ -44,6 +53,11 @@ export default function UpdateProfile() {
             <Styled.ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
                 <label>
                     <Text size="sm">Foto de perfil</Text>
+                    <Avatar
+                        src={session.data?.user.avatar_url}
+                        referrerPolicy="no-referrer"
+                        alt={session.data?.user.name}
+                    />
                 </label>
 
                 <label>
