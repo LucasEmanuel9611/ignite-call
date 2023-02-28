@@ -14,6 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minutes'
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/router'
+import { getLongNameWeekDays } from '@/utils/get-week-days'
 
 const timeIntervalsFormSchema = z.object({
     intervals: z.array(z.object({
@@ -77,6 +78,8 @@ export default function TimeIntervals() {
 
     const router = useRouter()
 
+    const weekDays = getLongNameWeekDays()
+
     async function handleSetTimeIntervals(data: any) {
         const { intervals } = data as TimeIntervalsFormOutput
 
@@ -118,7 +121,7 @@ export default function TimeIntervals() {
                                         )
                                     }}
                                 />
-                                <Text>{field.weekDay}</Text>
+                                <Text>{weekDays[field.weekDay]}</Text>
                             </Styled.IntervalDay>
                             <Styled.IntervalInputs>
                                 <TextInput size="sm"
