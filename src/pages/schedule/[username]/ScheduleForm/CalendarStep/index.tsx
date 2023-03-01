@@ -44,12 +44,12 @@ export function CalendarStep() {
         },
     )
     return (
-        <Styled.Container>
+        <Styled.Container isTimePickerOpen={isDateSelected}>
             <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
 
             {/* TODO: Adicionar animação */}
             {isDateSelected && (
-                <Styled.Container>
+                <Styled.TimePicker>
                     <Styled.TimePickerHeader>
                         {weekDay} <span>{describedDate}</span>
                     </Styled.TimePickerHeader>
@@ -66,7 +66,7 @@ export function CalendarStep() {
                             )
                         })}
                     </Styled.TimePickerList>
-                </Styled.Container>
+                </Styled.TimePicker>
             )}
         </Styled.Container>
     )
