@@ -5,9 +5,14 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import * as Styled from './styles'
 
+interface Availability {
+    possibleTimes: number[]
+    availabilityTimes: number[]
+}
+
 export function CalendarStep() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-    const [availability, setAvailability] = useState(null)
+    const [availability, setAvailability] = useState<Availability | null>(null)
     const router = useRouter()
 
     const isDateSelected = !!selectedDate
@@ -30,7 +35,7 @@ export function CalendarStep() {
                 },
             })
             .then((response) => {
-                console.log(response.data)
+                setAvailability(response.data)
             })
     }, [selectedDate, username])
 
@@ -46,17 +51,14 @@ export function CalendarStep() {
                     </Styled.TimePickerHeader>
 
                     <Styled.TimePickerList>
-                        <Styled.TimePickerItem>08:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>09:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>10:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>11:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>12:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>13:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>14:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>15:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>16:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>17:00h</Styled.TimePickerItem>
-                        <Styled.TimePickerItem>18:00h</Styled.TimePickerItem>
+
+                        {availability?.possibleTimes.map((hour) => (
+                            <Styled.TimePickerItem
+                                key={hour}
+                                disabled={!availability.availabilityTimes.includes(hour)}>
+                                {String(hour).padStart(2, '0')}:00h
+                            </Styled.TimePickerItem>
+                        ))}
                     </Styled.TimePickerList>
                 </Styled.Container>
             )}
