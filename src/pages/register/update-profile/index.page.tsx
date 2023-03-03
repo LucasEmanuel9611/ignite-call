@@ -10,6 +10,7 @@ import { buildNextAuthOptions } from "@/pages/api/auth/[...nextauth].api";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { api } from "@/lib/axios";
+import { NextSeo } from "next-seo";
 
 const UpdateProfileSchema = z.object({
     bio: z.string()
@@ -39,41 +40,44 @@ export default function UpdateProfile() {
     }
 
     return (
-        <Styled.Container>
-            <Styled.Header>
-                <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
-                <Text>
-                    Precisamos de algumas informações para criar seu perfil! Ah, você
-                    pode editar essas informações depois.
-                </Text>
+        <>
+            <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
+            <Styled.Container>
+                <Styled.Header>
+                    <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
+                    <Text>
+                        Precisamos de algumas informações para criar seu perfil! Ah, você
+                        pode editar essas informações depois.
+                    </Text>
 
-                <MultiStep size={4} currentStep={4} />
-            </Styled.Header>
+                    <MultiStep size={4} currentStep={4} />
+                </Styled.Header>
 
-            <Styled.ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
-                <label>
-                    <Text size="sm">Foto de perfil</Text>
-                    <Avatar
-                        src={session.data?.user.avatar_url}
-                        referrerPolicy="no-referrer"
-                        alt={session.data?.user.name}
-                    />
-                </label>
+                <Styled.ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
+                    <label>
+                        <Text size="sm">Foto de perfil</Text>
+                        <Avatar
+                            src={session.data?.user.avatar_url}
+                            referrerPolicy="no-referrer"
+                            alt={session.data?.user.name}
+                        />
+                    </label>
 
-                <label>
-                    <Text size="sm">Sobre você</Text>
-                    <TextArea {...register('bio')} />
-                    <Styled.FormAnnotation size="sm">
-                        Fale um pouco sobre você. Isto será exibido em sua página pessoal.
-                    </Styled.FormAnnotation>
-                </label>
+                    <label>
+                        <Text size="sm">Sobre você</Text>
+                        <TextArea {...register('bio')} />
+                        <Styled.FormAnnotation size="sm">
+                            Fale um pouco sobre você. Isto será exibido em sua página pessoal.
+                        </Styled.FormAnnotation>
+                    </label>
 
-                <Button type="submit" disabled={isSubmitting}>
-                    Finalizar
-                    <ArrowRight />
-                </Button>
-            </Styled.ProfileBox>
-        </Styled.Container>
+                    <Button type="submit" disabled={isSubmitting}>
+                        Finalizar
+                        <ArrowRight />
+                    </Button>
+                </Styled.ProfileBox>
+            </Styled.Container>
+        </>
     )
 }
 
