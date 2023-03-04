@@ -28,7 +28,6 @@
     "next-seo": "^5.15.0",
     "nookies": "^2.5.2",
     "phosphor-react": "^1.4.1",
-    "prettier": "^2.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",
@@ -38,6 +37,8 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/cookie": "^0.5.1",
+    "@typescript-eslint/parser": "^5.54.0",
+    "prettier": "^2.8.4",
     "prisma": "^4.10.1"
   }
 }
