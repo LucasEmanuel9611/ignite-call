@@ -8,7 +8,10 @@ import { DefaultSeo } from 'next-seo'
 
 globalStyles()
 
-export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider session={session}>
@@ -17,7 +20,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
             type: 'website',
             locale: 'pt_BR',
             url: 'https://www.ignite-call.rocketseat.com.br',
-            siteName: 'Ignite Call',
+            siteName: 'Ignite Call'
           }}
         />
         <Component {...pageProps} />

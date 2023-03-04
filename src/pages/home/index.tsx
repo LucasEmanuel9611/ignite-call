@@ -15,14 +15,23 @@ export default function Home() {
       />
       <Styled.Container>
         <Styled.Hero>
-          <Heading size='4xl'>Agendamento descomplicado</Heading>
-          <Text size='xl'>Conecte seu calendário e permita que as pessoas marquem agendamentis no seu tempo livre</Text>
+          <Heading size="4xl">Agendamento descomplicado</Heading>
+          <Text size="xl">
+            Conecte seu calendário e permita que as pessoas marquem agendamentis
+            no seu tempo livre
+          </Text>
 
           <ClaimUserNameForm />
         </Styled.Hero>
 
         <Styled.Preview>
-          <Image src={previewImage} height={400} quality={100} priority alt="Calendário simbolizando aplicação em funcionamento" />
+          <Image
+            src={previewImage}
+            height={400}
+            quality={100}
+            priority
+            alt="Calendário simbolizando aplicação em funcionamento"
+          />
         </Styled.Preview>
       </Styled.Container>
     </>
