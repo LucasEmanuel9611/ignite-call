@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
@@ -27,6 +28,7 @@
     "next-seo": "^5.15.0",
     "nookies": "^2.5.2",
     "phosphor-react": "^1.4.1",
+    "prettier": "^2.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",
