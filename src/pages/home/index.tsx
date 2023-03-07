@@ -17,7 +17,7 @@ export default function Home() {
         <Styled.Hero>
           <Heading size="4xl">Agendamento descomplicado</Heading>
           <Text size="xl">
-            Conecte seu calendário e permita que as pessoas marquem agendamentis
+            Conecte seu calendário e permita que as pessoas marquem agendamentos
             no seu tempo livre
           </Text>
 

@@ -1,31 +1,55 @@
-## IDEIAS PARA MELHORIAS POTERIORES
+<center>  <h1>Ignite Call</h1> </center>
 
-- MUDAR ESTRUTURA DE PASTAS, EX: USO DE FEATURE QUEBRA DE COMPONENTS, ETC
-- MELHORAR RESPONSIVIDADE, POSSIVEL USO DE DETECÇÃO SERVERSIDE
+<div > 
+  <img src="https://github.com/LucasEmanuel9611/ignews/blob/main/public/images/home.png" alt="imgHome"/>
+  <img src="https://github.com/LucasEmanuel9611/ignews/blob/main/public/images/scheduling.png" alt="imgStripe"/>
+</div>
 
-- APLICAR DIVERSOS TIPOS DE TESTES
+## 🧪 Tecnologias Utlizadas
 
-## Fluxo da aplicação
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-### Home
+- [React](https://reactjs.org)
+- [Next](https://nextjs.org/1)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Stitches](https://stitches.dev/)
+- [React-Query](https://react-query-v3.tanstack.com/)
+- [Zod](https://zod.dev/)
+- [react-hook-form](https://react-hook-form.com/)
+- [Next-seo](https://github.com/garmeeh/next-seo)
+- [next-auth](https://next-auth.js.org/)
+- [day-js](https://day.js.org/)
+- [nookies](https://github.com/maticzav/nookies)
+- [prisma](https://www.prisma.io/)
 
-    Guarda um component chamado claimUsernameForm que permite a definição do nome de usuário e redireciona para rota de registro, usando como parametro de rota o  username
+## Projeto:
 
-### Register
+Uma aplicaćão que permite conectar o calendário e marcar agendamentos no tempo livre
 
-    Pega o username do parametro de rota
-    ao dar submit no form faz uma requisição que verifica a existência do username, caso não exista ele cria  o usuário por requisição a api e seta o userId nos cookies, depois redireciona para página de conectar calendário
+## 🚀 Como executar
 
-### Connect Calendar
+Clone o projeto e acesse a pasta
 
-    Tem um botão de conexão com o google atraves do nextAuth e outro que redireciona par próxima página do form
+```bash
+$ git clone https://github.com/LucasEmanuel9611/ignews.git
+$ cd ignews
+```
 
-    o botão de conectar com o google atuliza o usuário com os dados da conexão OAuth, pois o usuário é criado na tela passada, o adapter personalizado permite atribuit a função de create um update no prisma
+Para iniciá-lo, siga os passos abaixo:
 
-### Time Intervals
+```bash
+# Instalar as dependências
+$ yarn install
+ou
+$ npm install
 
-    Tela que registra os intervalos de disponibilidade
 
-## Aprendizados
+# Iniciar o projeto
+$ yarn dev
+ou
+$ npm run dev
+```
 
-- quando temos um botão que não tem texto apenas ícone é necessário resetar o fontSize ou lineHeight, pois o tamanho do botão é definido com base neles logo o tamanho pode ficar desproporcional
+<strong>O app estará disponível no seu browser pelo endereço http://localhost:3000.</strong>
+
+⚠️ É necessário adicionar as variaveis de configuração no arquivo .env.local DATABASE_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, NEXT_AUTH_SECRET
