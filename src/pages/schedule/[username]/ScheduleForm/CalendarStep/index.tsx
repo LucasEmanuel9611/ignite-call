@@ -3,7 +3,7 @@ import { api } from '@/lib/axios'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as Styled from './styles'
 
 interface Availability {
@@ -37,15 +37,15 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
     async () => {
       const response = await api.get(`/users/${username}/availability`, {
         params: {
-          date: selectedDateWithoutTime
-        }
+          date: selectedDateWithoutTime,
+        },
       })
 
       return response.data
     },
     {
-      enabled: !!selectedDate
-    }
+      enabled: !!selectedDate,
+    },
   )
 
   function handleSelectTime(hour: number) {
@@ -69,7 +69,7 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
           </Styled.TimePickerHeader>
 
           <Styled.TimePickerList>
-            {availability?.possibleTimes.map(hour => {
+            {availability?.possibleTimes.map((hour) => {
               return (
                 <Styled.TimePickerItem
                   key={hour}

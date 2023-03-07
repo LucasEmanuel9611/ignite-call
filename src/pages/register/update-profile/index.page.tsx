@@ -6,7 +6,7 @@ import {
   Heading,
   MultiStep,
   Text,
-  TextArea
+  TextArea,
 } from '@ignite-ui/react'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
@@ -20,7 +20,7 @@ import { api } from '@/lib/axios'
 import { NextSeo } from 'next-seo'
 
 const UpdateProfileSchema = z.object({
-  bio: z.string()
+  bio: z.string(),
 })
 
 type UpdateProfileData = z.infer<typeof UpdateProfileSchema>
@@ -29,9 +29,9 @@ export default function UpdateProfile() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting },
   } = useForm<UpdateProfileData>({
-    resolver: zodResolver(UpdateProfileSchema)
+    resolver: zodResolver(UpdateProfileSchema),
   })
 
   const session = useSession()
@@ -39,7 +39,7 @@ export default function UpdateProfile() {
 
   async function handleUpdateProfile(data: UpdateProfileData) {
     await api.put('/users/profile', {
-      bio: data.bio
+      bio: data.bio,
     })
 
     await router.push(`/schedule/${session.data?.user.username}`)
@@ -94,12 +94,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await unstable_getServerSession(
     req,
     res,
-    buildNextAuthOptions(req, res)
+    buildNextAuthOptions(req, res),
   )
 
   return {
     props: {
-      session
-    }
+      session,
+    },
   }
 }

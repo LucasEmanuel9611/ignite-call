@@ -32,7 +32,7 @@ export default function Schedule({ user }: ScheduleProps) {
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 
@@ -41,13 +41,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      username
-    }
+      username,
+    },
   })
 
   if (!user) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
@@ -56,9 +56,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       user: {
         name: user.name,
         bio: user.bio,
-        avatarUrl: user.avatar_url
+        avatarUrl: user.avatar_url,
       },
-      revalidate: 60 * 60 * 24 // 1 day
-    }
+      revalidate: 60 * 60 * 24, // 1 day
+    },
   }
 }

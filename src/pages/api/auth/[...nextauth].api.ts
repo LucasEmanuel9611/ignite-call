@@ -5,10 +5,10 @@ import { PrismaAdapter } from '../../../lib/auth/prisma-adapter'
 
 export function buildNextAuthOptions(
   req: NextApiRequest | NextPageContext['req'],
-  res: NextApiResponse | NextPageContext['res']
+  res: NextApiResponse | NextPageContext['res'],
 ): NextAuthOptions {
   return {
-    //personalized adapter
+    // personalized adapter
     adapter: PrismaAdapter(req, res),
     providers: [
       GoogleProvider({
@@ -20,20 +20,20 @@ export function buildNextAuthOptions(
             access_type: 'offline',
             response_type: 'code',
             scope:
-              'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar'
-          }
+              'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar',
+          },
         },
-        //needed to get avatar_url value from picture field
+        // needed to get avatar_url value from picture field
         profile(profile: GoogleProfile) {
           return {
             id: profile.sub,
             name: profile.name,
             username: '',
             email: profile.email,
-            avatar_url: profile.picture
+            avatar_url: profile.picture,
           }
-        }
-      })
+        },
+      }),
     ],
 
     callbacks: {
@@ -50,10 +50,10 @@ export function buildNextAuthOptions(
       async session({ session, user }) {
         return {
           ...session,
-          user
+          user,
         }
-      }
-    }
+      },
+    },
   }
 }
 

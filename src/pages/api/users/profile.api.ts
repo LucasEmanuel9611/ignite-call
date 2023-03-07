@@ -5,12 +5,12 @@ import { prisma } from '../../../lib/prisma'
 import { buildNextAuthOptions } from '../auth/[...nextauth].api'
 
 const updateProfileBodySchema = z.object({
-  bio: z.string()
+  bio: z.string(),
 })
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== 'PUT') {
     return res.status(405).end()
@@ -19,7 +19,7 @@ export default async function handler(
   const session = await unstable_getServerSession(
     req,
     res,
-    buildNextAuthOptions(req, res)
+    buildNextAuthOptions(req, res),
   )
 
   if (!session) {
@@ -30,11 +30,11 @@ export default async function handler(
 
   await prisma.user.update({
     where: {
-      id: session.user.id
+      id: session.user.id,
     },
     data: {
-      bio
-    }
+      bio,
+    },
   })
 
   return res.status(204).end()

@@ -57,12 +57,12 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
       const response = await api.get(`/users/${username}/blocked-dates`, {
         params: {
           year: currentDate.get('year'),
-          month: currentDate.get('month') + 1
-        }
+          month: currentDate.get('month') + 1,
+        },
       })
       console.log(response.data)
       return response.data
-    }
+    },
   )
 
   const calendarWeeks = useMemo(() => {
@@ -71,7 +71,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
     }
 
     const daysInMonthArray = Array.from({
-      length: currentDate.daysInMonth()
+      length: currentDate.daysInMonth(),
     }).map((_, index) => {
       return currentDate.set('date', index + 1)
     })
@@ -79,7 +79,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
     const firstMonthDayInWeek = currentDate.get('day')
 
     const previousMonthDays = Array.from({
-      length: firstMonthDayInWeek
+      length: firstMonthDayInWeek,
     })
       .map((_, index) => {
         return currentDate.subtract(index + 1, 'day')
@@ -88,33 +88,33 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
 
     const lastDayInCurrentMonth = currentDate.set(
       'date',
-      currentDate.daysInMonth()
+      currentDate.daysInMonth(),
     )
 
     const lastWeekDay = lastDayInCurrentMonth.get('day')
 
     const nextMonthDays = Array.from({
-      length: 7 - (lastWeekDay + 1)
+      length: 7 - (lastWeekDay + 1),
     }).map((_, index) => {
       return lastDayInCurrentMonth.add(index + 1, 'day')
     })
 
     const calendarDays = [
-      ...previousMonthDays.map(date => {
+      ...previousMonthDays.map((date) => {
         return { date, disabled: true }
       }),
-      ...daysInMonthArray.map(date => {
+      ...daysInMonthArray.map((date) => {
         return {
           date,
           disabled:
             date.endOf('day').isBefore(new Date()) ||
             blockedDates.blockedWeekDays.includes(date.get('day')) ||
-            blockedDates.blockedDates.includes(date.get('date'))
+            blockedDates.blockedDates.includes(date.get('date')),
         }
       }),
-      ...nextMonthDays.map(date => {
+      ...nextMonthDays.map((date) => {
         return { date, disabled: true }
-      })
+      }),
     ]
 
     const calendarWeeks = calendarDays.reduce<CalendarWeek[]>(
@@ -124,13 +124,13 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
         if (isNewWeek) {
           weeks.push({
             week: index / 7 + 1,
-            days: original.slice(index, index + 7)
+            days: original.slice(index, index + 7),
           })
         }
 
         return weeks
       },
-      []
+      [],
     )
 
     return calendarWeeks
@@ -156,7 +156,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
       <Styled.CalendarBody>
         <thead>
           <tr>
-            {shortNameWeekDays.map(weekDay => (
+            {shortNameWeekDays.map((weekDay) => (
               <th key={weekDay}>{weekDay}.</th>
             ))}
           </tr>

@@ -11,7 +11,7 @@ import * as Styled from './styles'
 const confirmFormSchema = z.object({
   name: z.string().min(3, { message: 'O nome precisa no mínimo 3 caracteres' }),
   email: z.string().email({ message: 'Digite um e-mail válido' }),
-  observations: z.string().nullable()
+  observations: z.string().nullable(),
 })
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>
@@ -23,18 +23,19 @@ interface ConfirmStepProps {
 
 export function ConfirmStep({
   schedulingDate,
-  onCancelConfirmation
+  onCancelConfirmation,
 }: ConfirmStepProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<ConfirmFormData>({
-    resolver: zodResolver(confirmFormSchema)
+    resolver: zodResolver(confirmFormSchema),
   })
 
+  const router = useRouter()
+
   async function handleConfirmScheduling(data: ConfirmFormData) {
-    const router = useRouter()
     const username = String(router.query.username)
 
     const { name, email, observations } = data
@@ -43,7 +44,7 @@ export function ConfirmStep({
       name,
       email,
       observations,
-      date: schedulingDate
+      date: schedulingDate,
     })
 
     onCancelConfirmation()

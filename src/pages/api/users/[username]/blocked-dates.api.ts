@@ -3,7 +3,7 @@ import { prisma } from '../../../../lib/prisma'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== 'GET') {
     return res.status(405).end()
@@ -18,8 +18,8 @@ export default async function handler(
 
   const user = await prisma.user.findUnique({
     where: {
-      username
-    }
+      username,
+    },
   })
 
   if (!user) {
@@ -28,16 +28,16 @@ export default async function handler(
 
   const availableWeekDays = await prisma.userTimeInterval.findMany({
     select: {
-      week_day: true
+      week_day: true,
     },
     where: {
-      user_id: user.id
-    }
+      user_id: user.id,
+    },
   })
 
   const blockedWeekDays = [0, 1, 2, 3, 4, 5, 6].filter((_, index) => {
     return !availableWeekDays.some(
-      availableWeekDay => availableWeekDay.week_day === index
+      (availableWeekDay) => availableWeekDay.week_day === index,
     )
   })
 
@@ -61,7 +61,7 @@ export default async function handler(
     HAVING amount >= size
 `
 
-  const blockedDates = blockedDatesRaw.map(item => item.date)
+  const blockedDates = blockedDatesRaw.map((item) => item.date)
 
   return res.json({ blockedWeekDays, blockedDates })
 }

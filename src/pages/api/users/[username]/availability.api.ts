@@ -4,7 +4,7 @@ import { prisma } from '../../../../lib/prisma'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== 'GET') {
     return res.status(405).end()
@@ -19,8 +19,8 @@ export default async function handler(
 
   const user = await prisma.user.findUnique({
     where: {
-      username
-    }
+      username,
+    },
   })
 
   if (!user) {
@@ -37,8 +37,8 @@ export default async function handler(
   const userAvailability = await prisma.userTimeInterval.findFirst({
     where: {
       user_id: user.id,
-      week_day: referenceDate.get('day')
-    }
+      week_day: referenceDate.get('day'),
+    },
   })
 
   if (!userAvailability) {
@@ -53,25 +53,25 @@ export default async function handler(
   const possibleTimes = Array.from({ length: endHour - startHour }).map(
     (_, i) => {
       return startHour + i
-    }
+    },
   )
 
   const blockedTimes = await prisma.scheduling.findMany({
     select: {
-      date: true
+      date: true,
     },
     where: {
       user_id: user.id,
       date: {
         gte: referenceDate.set('hour', startHour).toDate(),
-        lte: referenceDate.set('hour', endHour).toDate()
-      }
-    }
+        lte: referenceDate.set('hour', endHour).toDate(),
+      },
+    },
   })
 
-  const availableTimes = possibleTimes.filter(time => {
+  const availableTimes = possibleTimes.filter((time) => {
     return !blockedTimes.some(
-      blockedTime => blockedTime.date.getHours() === time
+      (blockedTime) => blockedTime.date.getHours() === time,
     )
   })
 

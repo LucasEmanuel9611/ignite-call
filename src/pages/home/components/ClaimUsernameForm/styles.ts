@@ -8,8 +8,8 @@ export const Form = styled(Box, {
   padding: '$4',
 
   '@media(max-width: 600px)': {
-    gridTemplateColumns: '1fr'
-  }
+    gridTemplateColumns: '1fr',
+  },
 })
 
 export const Preview = styled('div', {
@@ -17,14 +17,14 @@ export const Preview = styled('div', {
   overflow: 'hidden',
 
   '@media(max-width: 600px)': {
-    display: 'none'
-  }
+    display: 'none',
+  },
 })
 
 export const FormAnnotation = styled('div', {
   marginTop: '$2',
 
   [`> ${Text}`]: {
-    color: '$gray400'
-  }
+    color: '$gray400',
+  },
 })
