@@ -1,8 +1,8 @@
+import { ScheduleForm } from '@/components/ScheduleForm/index.page'
 import { prisma } from '@/lib/prisma'
 import { Avatar, Heading, Text } from '@ignite-ui/react'
 import { GetStaticProps } from 'next'
 import { NextSeo } from 'next-seo'
-import { ScheduleForm } from './ScheduleForm/index.page'
 import * as Styled from './styles'
 
 interface ScheduleProps {
