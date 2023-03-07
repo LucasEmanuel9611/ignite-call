@@ -1,8 +1,8 @@
 <center>  <h1>Ignite Call</h1> </center>
 
 <div > 
-  <img src="https://github.com/LucasEmanuel9611/ignews/blob/main/public/images/home.png" alt="imgHome"/>
-  <img src="https://github.com/LucasEmanuel9611/ignews/blob/main/public/images/scheduling.png" alt="imgStripe"/>
+  <img src="https://github.com/LucasEmanuel9611/ignite-call/blob/main/public/images/home.png" alt="imgHome"/>
+  <img src="https://github.com/LucasEmanuel9611/ignite-call/blob/main/public/images/scheduling.png" alt="imgScheduling"/>
 </div>
 
 ## 🧪 Tecnologias Utlizadas
